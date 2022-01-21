@@ -113,12 +113,12 @@ def main():
 
     # WandB
     wandb_logger = WandbLogger(
-        name='early-wandb-experimenting', 
-        entity='ml-ops-awesome-25', 
-        project="ML-Ops-Equivariant-Transformer", 
+        name="early-wandb-experimenting",
+        entity="ml-ops-awesome-25",
+        project="ML-Ops-Equivariant-Transformer",
         log_model=True,
         save_code=True,
-        group="WandB-development"
+        group="WandB-development",
     )
 
     # initialize data module
