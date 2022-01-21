@@ -29,4 +29,3 @@ CMD ["torchserve", \
      "--models", \
      "equivariant_transformer=equivariant_transformer.mar"]
 END
-
