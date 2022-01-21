@@ -92,9 +92,9 @@ View training diagnostics:
 
 ### Online prediction service using `TorchServe`
  - We need the three input files for "torch-model-archiver"
- - Write `--model-file`: .... (model.py is not enough. How do we specify the exact architecture?)
- - Write `--serialized-file`: jit_dump.pt  (easy to place in models/ and copy to model-server)
- - Write `--handler`: ....  We must create custom handler that loads ase.Atoms() object and feeds to serving model
+ - Write `--model-file`: .... (not needed as we use script rather than eager-mode) :heavy_check_mark:
+ - Write `--serialized-file`: jit_dump.pt  (easy to place in models/ and copy to model-server) :heavy_check_mark:
+ - Write `--handler`: ....  We must create custom handler that loads ase.Atoms() object and feeds to serving model :heavy_check_mark:
  
  Cloud:
  - Create gcloud project: equivariant-transformer :heavy_check_mark:
