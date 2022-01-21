@@ -1,10 +1,10 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='src',
+    name="src",
     packages=find_packages(),
-    version='1.0',
-    description='For our project, we have chosen to work with the PyTorch-Geometrics framework and apply the TorchMD equivariant transformer architecture to predict potential energies for small molecules while learning on the fly.',
-    author='Bjarke Hastrup, Sam Norwood, Henrik Hansen',
-    license='',
+    version="1.0",
+    description="For our project, we have chosen to work with the PyTorch-Geometrics framework and apply the TorchMD equivariant transformer architecture to predict potential energies for small molecules while learning on the fly.",
+    author="Bjarke Hastrup, Sam Norwood, Henrik Hansen",
+    license="",
 )

@@ -55,23 +55,23 @@ class LNNP(LightningModule):
 
     def training_step(self, batch, batch_idx):
         loss = self.step(batch, mse_loss, "train")
-        self.log('WandB-log: Training loss', loss, on_epoch=True)
+        self.log("WandB-log: Training loss", loss, on_epoch=True)
         return loss
 
     def validation_step(self, batch, batch_idx, *args):
         if len(args) == 0 or (len(args) > 0 and args[0] == 0):
             # validation step
             loss = self.step(batch, mse_loss, "val")
-            self.log('WandB-log: Validation loss', loss, on_epoch=True)
+            self.log("WandB-log: Validation loss", loss, on_epoch=True)
             return loss
         # test step
         loss = self.step(batch, l1_loss, "test")
-        self.log('WandB-log: Test loss', loss, on_epoch=True)
+        self.log("WandB-log: Test loss", loss, on_epoch=True)
         return loss
 
     def test_step(self, batch, batch_idx):
         self.step(batch, l1_loss, "test")
-        return 
+        return
 
     def step(self, batch, loss_fn, stage):
         with torch.set_grad_enabled(stage == "train" or self.hparams.derivative):

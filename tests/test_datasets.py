@@ -30,7 +30,8 @@ def test_custom(energy, forces, num_files, tmpdir, num_samples=100):
     if energy == False and forces == False:
         with raises(AssertionError):
             Custom(
-                coordglob=join(tmpdir, "coords*"), embedglob=join(tmpdir, "embed*"),
+                coordglob=join(tmpdir, "coords*"),
+                embedglob=join(tmpdir, "embed*"),
             )
         return
 
