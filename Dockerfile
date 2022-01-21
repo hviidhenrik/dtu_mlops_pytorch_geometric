@@ -32,7 +32,6 @@ RUN wget -nv \
     rm -rf /root/tools/google-cloud-sdk/.install/.backup
 
 ENV PATH $PATH:/root/tools/google-cloud-sdk/bin
-RUN echo '[GoogleCompute]\nservice_account = default' > /etc/boto.cfg
 
 WORKDIR /dtu_mlops_pytorch_geometric
 
