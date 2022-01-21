@@ -58,21 +58,48 @@ Finally, clone the repo:
 The repository should now be ready to run training as described below.
 
 ## Run training
-To run model training with the example configuration on the QM9 dataset:
+For the purpose of the present project, the model is only configured to run on the QM9 
+dataset. Specific hyperparameters are set in a yaml file which can be pointed to at the
+command line. To run model training with the example configuration:
 
-     python src/models/train.py --conf config/example.yaml --dataset QM9 --log-dir output/
+     python src/models/train.py --conf config/train_hparams.yaml
+
+Which will save the model along with some output metrics to the `models/` directory.
 
 View training diagnostics:
 
 	https://wandb.ai/ml-ops-awesome-25
 
 # TO DO
+## ML/DevOps on repository
  - make unit tests run and check coverage :heavy_check_mark:
  - set up github actions workflow :heavy_check_mark:
      - unit tests run on pull request to master branch 
- - do profiling
- - make train.py save model to models/ folder
+ - do profiling :heavy_check_mark:
+ - make train.py save model to models/ folder 
  - make a predict_model file and some data for proof of concept
  - set up wandb logging :heavy_check_mark:
- - docker stuff
- - gcloud stuff
+ - docker file and built image for containerized training/prediction :heavy_check_mark:
+ - Google Cloud Platform setup for cloud training/prediction :heavy_check_mark:
+
+## Deployment on Google Cloud Platform
+### Model (re)training in the cloud
+ - Setup Cloud Storage bucket: awesome_sauce_bucket :heavy_check_mark:
+ - Write Dockerfile like here: https://cloud.google.com/ai-platform/training/docs/custom-containers-training  :heavy_check_mark:
+ - Make sure training script copies final model checkpoint (or serialized model) to bucket using gsutil, like here
+`https://github.com/GoogleCloudPlatform/cloudml-samples/blob/c37999a568d8de92f9fae222bc45de25c9f4f60e/pytorch/containers/quickstart/mnist/trainer/mnist.py.`
+ - Push to Container Registry :heavy_check_mark:
+ - Either submit job, or create a trigger on pushes to master (can this be restricted to changes in data/raw or src/ ??)
+	`wandb: ERROR api_key not configured (no-tty). call wandb.login(key=[your_api_key])`
+
+### Online prediction service using `TorchServe`
+ - We need the three input files for "torch-model-archiver"
+ - Write `--model-file`: .... (model.py is not enough. How do we specify the exact architecture?)
+ - Write `--serialized-file`: jit_dump.pt  (easy to place in models/ and copy to model-server)
+ - Write `--handler`: ....  We must create custom handler that loads ase.Atoms() object and feeds to serving model
+ 
+ Cloud:
+ - Create gcloud project: equivariant-transformer :heavy_check_mark:
+ - Create artifact-repo: gnn-artifact-repo :heavy_check_mark:
+ - Write dockerfile that creates .mar model object using "torch-model-archiver"
+   and serves this using torchserve
