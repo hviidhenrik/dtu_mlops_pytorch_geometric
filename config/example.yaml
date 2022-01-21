@@ -23,7 +23,7 @@ force_files: null
 force_weight: 1.0
 inference_batch_size: 16
 load_model: null
-log_dir: /tmp/logs
+log_dir: output/
 lr: 0.0001
 lr_factor: 0.8
 lr_min: 1.0e-06
@@ -33,7 +33,7 @@ max_num_neighbors: 32
 max_z: 100
 neighbor_embedding: true
 ngpus: 0
-num_epochs: 20
+num_epochs: 5
 num_heads: 8
 num_layers: 6
 num_nodes: 1
